@@ -42,7 +42,7 @@ BuildTY='Debug'
 else
 BuildTY='Release'
 fi
-export LLVM_DIR=$LLVMRELEASE
+export LLVM_DIR=$(llvm-config --obj-root)
 
 export PATH=$LLVM_DIR/bin:$PATH
 Build=$BuildTY'-build'
@@ -58,5 +58,5 @@ else
   ${CMAKE} -G "${GENERATOR}" -DCMAKE_INSTALL_PREFIX="${installDir}" -DCMAKE_CXX_FLAGS="-std=c++17" ../
 fi
 
-${CMAKE} --build . -- -j${JOBS}
+${CMAKE} --build . -j${JOBS}
 ${CMAKE} --install .
