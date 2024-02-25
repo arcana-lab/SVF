@@ -21,6 +21,10 @@ if test "$JOBS" == "" ; then
   JOBS=8
 fi
 
+if test "$GENERATOR" == "" ; then
+  GENERATOR="Unix Makefiles"
+fi
+
 # Check the cmake binary
 command -v cmake3
 if test $? -eq 1 ; then
