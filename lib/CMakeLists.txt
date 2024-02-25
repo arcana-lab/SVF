@@ -76,16 +76,16 @@ set(SOURCES
 #    MTA/TCT.cpp
     )
 
-add_llvm_library(Svf ${SOURCES})
-add_llvm_library(LLVMSvf ${SOURCES})
+add_llvm_library(Svf SHARED ${SOURCES})
+add_llvm_library(LLVMSvf SHARED ${SOURCES})
 
 link_directories( ${CMAKE_BINARY_DIR}/lib/Cudd )
 llvm_map_components_to_libnames(llvm_libs bitwriter core ipo irreader instcombine instrumentation target linker analysis scalaropts support )
 target_link_libraries(LLVMSvf )
 if ( CMAKE_SYSTEM_NAME MATCHES "Darwin")
-    target_link_libraries(Svf LLVMCudd )
+    # target_link_libraries(Svf LLVMCudd )
 else()
-    target_link_libraries(Svf )
+    # target_link_libraries(Svf )
 endif()
 
 if(DEFINED IN_SOURCE_BUILD)

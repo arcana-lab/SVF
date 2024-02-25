@@ -3,7 +3,8 @@
 # Set the installation directory
 installDir=$NOELLE_INSTALL_DIR ;
 if test "$installDir" == "" ; then
-  installDir="`realpath ../../install`"  ;
+  echo "Missing value for NOELLE_INSTALL_DIR"
+  exit 1
 fi
 mkdir -p $installDir ;
 
