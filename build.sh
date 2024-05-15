@@ -228,9 +228,12 @@ mkdir "${BUILD_DIR}"
 cmake -D CMAKE_BUILD_TYPE:STRING="${BUILD_TYPE}" \
     -DSVF_ENABLE_ASSERTIONS:BOOL=true            \
     -DSVF_SANITIZE="${SVF_SANITIZER}"            \
-    -DBUILD_SHARED_LIBS=off                      \
+    -DBUILD_SHARED_LIBS=on                       \
+    -DCMAKE_INSTALL_PREFIX="$1"                  \
     -S "${SVFHOME}" -B "${BUILD_DIR}"
 cmake --build "${BUILD_DIR}" -j ${jobs}
+cmake --install "${BUILD_DIR}"
+cp z3.obj/bin/libz3.so $1/lib
 
 ########
 # Set up environment variables of SVF

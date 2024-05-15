@@ -116,7 +116,7 @@ public:
     static const Option<bool> PTSPrint;
     static const Option<bool> PTSAllPrint;
     static const Option<bool> PrintFieldWithBasePrefix;
-    static const Option<bool> PStat;
+    static Option<bool> PStat;
     static const Option<u32_t> StatBudget;
     static const Option<bool> PAGDotGraph;
     static const Option<bool> ShowSVFIRValue;

@@ -229,7 +229,7 @@ const Option<bool> Options::PTSAllPrint(
     false
 );
 
-const Option<bool> Options::PStat(
+Option<bool> Options::PStat(
     "stat",
     "Statistic for Pointer analysis",
     true

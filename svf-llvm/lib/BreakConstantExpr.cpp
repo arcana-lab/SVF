@@ -62,6 +62,10 @@ using namespace SVF;
 char BreakConstantGEPs::ID = 0;
 char MergeFunctionRets::ID = 0;
 
+// Register the pass
+static llvm::RegisterPass<BreakConstantGEPs> BP ("break-constgeps",
+        "Remove GEP Constant Expressions");
+
 #define DEBUG_TYPE "break-constgeps"
 
 // Statistics

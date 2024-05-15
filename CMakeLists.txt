@@ -20,6 +20,7 @@ option(SVF_EXPORT_DYNAMIC "Export all (not only used) dynamic symbols to dynamic
 option(SVF_ENABLE_ASSERTIONS "Always enable assertions")
 
 # Configure top-level SVF variables (used by CMake for configuring installed SVF package)
+set(CMAKE_INSTALL_LIBDIR lib)
 set(SVF_INSTALL_ROOT ${CMAKE_INSTALL_PREFIX})
 set(SVF_INSTALL_BIN_DIR ${CMAKE_INSTALL_PREFIX}/${CMAKE_INSTALL_BINDIR})
 set(SVF_INSTALL_LIB_DIR ${CMAKE_INSTALL_PREFIX}/${CMAKE_INSTALL_LIBDIR})

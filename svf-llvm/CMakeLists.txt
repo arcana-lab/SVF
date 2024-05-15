@@ -44,18 +44,7 @@ else()
   message(STATUS "Linking to separate LLVM static libraries")
   llvm_map_components_to_libnames(
     llvm_libs
-    analysis
-    bitwriter
-    core
-    instcombine
-    instrumentation
-    ipo
-    irreader
-    linker
-    scalaropts
-    support
-    target
-    transformutils
+    demangle
   )
 endif()
 
@@ -64,7 +53,7 @@ list(APPEND CMAKE_MODULE_PATH "${LLVM_CMAKE_DIR}")
 include(AddLLVM)
 
 # Define the actual SvfLLVM library (use LLVM's functions to automatically link stuff)
-add_llvm_library(SvfLLVM ${SVFLLVM_SOURCES})
+add_llvm_library(SvfLLVM MODULE ${SVFLLVM_SOURCES})
 
 # Add the public headers as an include directory
 target_include_directories(SvfLLVM
@@ -74,7 +63,7 @@ target_include_directories(SvfLLVM
 )
 
 # Link LLVM's libraries to SvfLLVM, as well as the SVF core library
-target_link_libraries(SvfLLVM PUBLIC ${llvm_libs} SvfCore)
+target_link_libraries(SvfLLVM ${llvm_libs} SvfCore)
 
 # Get the source files (i.e. all *.c/*.cpp files) for SVF's subprojects and add them to SvfLLVM
 file(GLOB_RECURSE SVF_LLVM_SOURCES lib/*.cpp)
@@ -95,7 +84,7 @@ if(TARGET intrinsics_gen)
 endif()
 
 # Add the targets for compiling the SvfLLVM tool binaries
-add_subdirectory(tools)
+# add_subdirectory(tools)
 
 # Find clang from the LLVM instance found earlier
 find_program(LLVM_CLANG
