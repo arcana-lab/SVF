@@ -163,7 +163,7 @@ Option<bool> Options::HandBlackHole(
     false
 );
 
-const Option<bool> Options::FirstFieldEqBase(
+Option<bool> Options::FirstFieldEqBase(
     "ff-eq-base",
     "Treat base objects as their first fields",
     false
