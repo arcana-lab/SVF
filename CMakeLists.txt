@@ -112,25 +112,17 @@ if(EXISTS "${PROJECT_SOURCE_DIR}/Test-Suite")
 endif()
 
 # Find Z3 and its include directory from the top-level include file
-find_library(
-  Z3_LIBRARIES
-  REQUIRED
-  NAMES z3
-  HINTS ${Z3_DIR} ENV Z3_DIR
-  PATH_SUFFIXES bin lib)
-find_path(
-  Z3_INCLUDES
-  REQUIRED
-  NAMES z3++.h
-  HINTS ${Z3_DIR} ENV Z3_DIR
-  PATH_SUFFIXES include z3)
+find_package(Z3 REQUIRED HINTS ${Z3_DIR})
+get_target_property(Z3_INCLUDE_DIRS z3::libz3 INTERFACE_INCLUDE_DIRECTORIES)
+get_target_property(Z3_LINK_LIBRARIES z3::libz3 LOCATION)
+
 message(STATUS "Z3 STATUS:
-  Z3 library file:        ${Z3_LIBRARIES}
-  Z3 include directory:   ${Z3_INCLUDES}")
+  Z3 library file:        ${Z3_LINK_LIBRARIES}
+  Z3 include directory:   ${Z3_INCLUDE_DIRS}")
 
 # Add the Z3 include directory and link the Z3 library to all targets of SVF
-link_libraries(${Z3_LIBRARIES})
-include_directories(SYSTEM ${Z3_INCLUDES})
+link_libraries(z3::libz3)
+include_directories(SYSTEM ${Z3_INCLUDE_DIRS})
 
 # Add the actual SVF and SVF-LLVM targets
 add_subdirectory(svf)
